@@ -1,0 +1,394 @@
+.browserContainer {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.browserBar {
+  background-color: #f1f1f1;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.browserControls {
+  display: flex;
+  gap: 8px;
+  margin-right: 15px;
+}
+
+.browserButton {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.browserAddressBar {
+  flex: 1;
+  background-color: #e1e1e1;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.browserUrl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.iconGlobe {
+  color: #777;
+}
+
+.browserActions {
+  margin-left: 15px;
+  color: #999;
+}
+
+.browserContent {
+  flex: 1;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Important for flex children to respect parent height */
+}
+
+/* CSS for the Centrus UI mockup */
+.centrusContainer {
+  display: flex;
+  height: 100%;
+  min-height: 600px;
+  position: relative;
+}
+
+.centrusSidebar {
+  width: 70px;
+  background-color: #041E42;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.centrusSidebarWide {
+  width: 200px;
+  background-color: #041E42;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+  color: white;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.centrusLogo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  padding: 0 15px;
+}
+
+.centrusLogoIcon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.centrusLogoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.centrusLogoText {
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+}
+
+.centrusNavItems {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  margin-bottom: 15px;
+}
+
+.centrusNavItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 15px;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: background-color 0.2s;
+  font-size: 14px;
+}
+
+.centrusNavItem.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.centrusNavItemIcon {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centrusMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-left: 200px; /* Match the width of sidebar */
+}
+
+.centrusHeader {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.centrusHeaderTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.centrusHeaderSubtitle {
+  font-size: 13px;
+  color: #777;
+  margin-top: 4px;
+}
+
+.centrusNewChatButton {
+  background-color: #041E42;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.centrusDashboardContent {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 20px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.centrusDashboardStatsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.centrusDashboardStatCard {
+  background-color: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.centrusDashboardStatTitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.centrusDashboardStatValue {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.centrusDashboardStatTrend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #777;
+}
+
+.centrusDashboardChartsRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.centrusDashboardChartCard {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.centrusDashboardChartHeader {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.centrusDashboardChartTitle {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.centrusDashboardChartControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.centrusDashboardSelect {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #555;
+  background-color: white;
+}
+
+.centrusDashboardChart {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centrusDashboardTableCard {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.centrusDashboardTableHeader {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.centrusDashboardTableTitle {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.centrusDashboardTableControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.centrusDashboardViewAllButton {
+  border: none;
+  background-color: transparent;
+  color: #041E42;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.centrusProfileSection {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.centrusProfileInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 15px;
+  width: 100%;
+}
+
+.centrusProfileAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #1a3c6b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.centrusProfileUser {
+  display: flex;
+  flex-direction: column;
+}
+
+.centrusProfileName {
+  font-weight: 500;
+  color: white;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.centrusProfileTitle {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11px;
+}
+
+.centrusLogout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 15px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 2px;
+} 

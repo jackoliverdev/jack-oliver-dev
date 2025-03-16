@@ -7,6 +7,17 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <div 
+      style={{
+        position: 'fixed',
+        top: '60vh',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: '#0A0F1A',
+        zIndex: -1
+      }} 
+    />
     <App />
   </React.StrictMode>
 );
