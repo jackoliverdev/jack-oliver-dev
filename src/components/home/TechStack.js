@@ -1,23 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 
 function TechStack() {
-  const [isVisible, setIsVisible] = useState(false);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-    
-    observer.observe(document.getElementById('tech-stack-section'));
-    return () => observer.disconnect();
-  }, []);
-
   // Tech categories with their tools
   const technologies = [
     {
@@ -30,8 +13,7 @@ function TechStack() {
         { name: "Next.js", icon: "nextjs.svg" },
         { name: "TailwindCSS", icon: "tailwind.svg" },
         { name: "Framer", icon: "framer.svg" }
-      ],
-      delay: 0.1
+      ]
     },
     {
       category: "Backend",
@@ -42,8 +24,7 @@ function TechStack() {
         { name: "Supabase", icon: "supabase.svg" },
         { name: "Firebase", icon: "firebase.svg" },
         { name: "Stripe", icon: "stripe.svg" }
-      ],
-      delay: 0.2
+      ]
     },
     {
       category: "Mobile",
@@ -51,8 +32,7 @@ function TechStack() {
         { name: "React Native", icon: "react-native.svg" },
         { name: "Expo", icon: "expo.svg" },
         { name: "Swift", icon: "swift.svg" }
-      ],
-      delay: 0.3
+      ]
     },
     {
       category: "Artificial Intelligence",
@@ -60,8 +40,7 @@ function TechStack() {
         { name: "OpenAI API", icon: "openai.svg" },
         { name: "Lang Chain", icon: "langchain.svg" },
         { name: "Hugging Face", icon: "huggingface.svg" }
-      ],
-      delay: 0.4
+      ]
     }
   ];
   
@@ -75,12 +54,7 @@ function TechStack() {
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
-            transition={{ duration: 0.5 }}
-            className="inline-block px-6 py-2 rounded-full relative group overflow-hidden"
-          >
+          <div className="inline-block px-6 py-2 rounded-full relative group overflow-hidden">
             {/* Glassmorphism effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-600/20 backdrop-blur-md rounded-full shadow-inner"></div>
             <div className="absolute inset-0 bg-white/20 rounded-full shadow-sm"></div>
@@ -89,44 +63,26 @@ function TechStack() {
             <div className="absolute -top-1/2 left-0 right-0 h-1/2 bg-white/10 blur-sm transform rotate-12 translate-y-1 z-0"></div>
             
             <span className="relative z-20 text-blue-400 font-medium text-sm tracking-wider">TECHNOLOGIES</span>
-          </motion.div>
+          </div>
           
-          <motion.h2 
-            initial={{ opacity: 0 }}
-            animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl sm:text-4xl font-bold mb-3 text-white"
-          >
+          <h2 className="text-3xl sm:text-4xl font-bold mb-3 text-white">
             My Tech Stack
-          </motion.h2>
+          </h2>
           
-          <motion.div 
-            initial={{ width: 0, opacity: 0 }}
-            animate={isVisible ? { width: "5rem", opacity: 1 } : { width: 0, opacity: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-6 rounded-full relative"
-          >
+          <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-6 rounded-full relative">
             <div className="absolute inset-0 bg-white opacity-30 blur-sm"></div>
-          </motion.div>
+          </div>
           
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-gray-300 max-w-2xl mx-auto"
-          >
+          <p className="text-gray-300 max-w-2xl mx-auto">
             These are the technologies and tools I use to bring ideas to life.
-          </motion.p>
+          </p>
         </div>
         
         {/* Tech Stack Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {technologies.map((tech, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: tech.delay }}
               className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700 relative overflow-hidden group"
             >
               {/* Corner decorations */}
@@ -165,7 +121,7 @@ function TechStack() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -173,4 +129,4 @@ function TechStack() {
   );
 }
 
-export default TechStack; 
+export default TechStack;

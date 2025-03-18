@@ -1,24 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 function CTA() {
-  const [isVisible, setIsVisible] = useState(false);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-    
-    observer.observe(document.getElementById('cta-section'));
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <div id="cta-section" className="py-20 w-full relative">
       <div className="container mx-auto max-w-5xl relative px-6">
@@ -41,30 +24,15 @@ function CTA() {
           {/* Content */}
           <div className="relative z-10 py-12 px-8 md:px-14">
             <div className="text-center">
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.5 }}
-                className="text-3xl md:text-4xl font-bold mb-4 text-white"
-              >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
                 Ready to Bring Your <span className="text-blue-400">Ideas</span> to Life?
-              </motion.h2>
+              </h2>
               
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-gray-300 mb-8 max-w-2xl mx-auto"
-              >
+              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
                 Let's collaborate to create exceptional digital experiences that solve real problems and drive business growth.
-              </motion.p>
+              </p>
               
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="flex flex-col sm:flex-row justify-center items-center gap-4"
-              >
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
                 {/* Primary button - Get in Touch */}
                 <Link 
                   to="/contact" 
@@ -96,7 +64,7 @@ function CTA() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </Link>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>

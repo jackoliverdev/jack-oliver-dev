@@ -1,51 +1,23 @@
-import React, { useEffect, useState, useMemo, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import CalendlyModal from '../contact/CalendlyModal';
 
 function Hero() {
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
-  const [currentCharIndex, setCurrentCharIndex] = useState(0);
-  const typingTimerRef = useRef(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  // Improved code indentation for a more authentic IDE look
-  const codeLines = useMemo(() => [
-    { text: "const developWebsite = (idea) => {", delay: 100 },
-    { text: "  return {", delay: 100 },
-    { text: "    design: 'beautiful',", delay: 100 },
-    { text: "    strategy: 'business-aligned',", delay: 100 },
-    { text: "    technology: 'cutting-edge',", delay: 100 },
-    { text: "    performance: 'optimised',", delay: 100 },
-    { text: "    ROI: 'exceptional',", delay: 100 },
-    { text: "    client: 'satisfied'", delay: 100 },
-    { text: "  };", delay: 100 },
-    { text: "};", delay: 100 }
-  ], []);
-  
-  // Even faster typing with consistent timing
-  useEffect(() => {
-    if (currentLineIndex < codeLines.length) {
-      const currentLine = codeLines[currentLineIndex];
-      
-      if (currentCharIndex < currentLine.text.length) {
-        // Ultra-fast typing (15ms per character)
-        typingTimerRef.current = setTimeout(() => {
-          setCurrentCharIndex(currentCharIndex + 1);
-        }, 15); 
-      } else {
-        // Very short delay between lines (150ms)
-        typingTimerRef.current = setTimeout(() => {
-          setCurrentLineIndex(currentLineIndex + 1);
-          setCurrentCharIndex(0);
-        }, 150);
-      }
-    }
-    
-    return () => {
-      if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
-    };
-  }, [currentLineIndex, currentCharIndex, codeLines]);
+  // Static code without typing animation
+  const codeLines = [
+    { text: "const developWebsite = (idea) => {" },
+    { text: "  return {" },
+    { text: "    design: 'beautiful'," },
+    { text: "    strategy: 'business-aligned'," },
+    { text: "    technology: 'cutting-edge'," },
+    { text: "    performance: 'optimised'," },
+    { text: "    ROI: 'exceptional'," },
+    { text: "    client: 'satisfied'" },
+    { text: "  };" },
+    { text: "};" }
+  ];
 
   // Function to apply syntax highlighting
   const getSyntaxHighlightedLine = (text) => {
@@ -64,23 +36,13 @@ function Hero() {
   };
 
   return (
-    <section className="relative pt-40 pb-32 overflow-hidden">
+    <section className="pt-40 pb-32 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between">
           {/* Left content - Text */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="w-full lg:w-1/2 lg:pr-12 mb-10 lg:mb-0"
-          >
+          <div className="w-full lg:w-1/2 lg:pr-12 mb-10 lg:mb-0">
             <div className="inline-block mb-4">
-              <motion.div 
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="inline-block px-6 py-2 rounded-full relative group overflow-hidden"
-              >
+              <div className="inline-block px-6 py-2 rounded-full relative group overflow-hidden">
                 {/* Glassmorphism effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-600/20 backdrop-blur-md rounded-full shadow-inner"></div>
                 <div className="absolute inset-0 bg-white/20 rounded-full shadow-sm"></div>
@@ -89,7 +51,7 @@ function Hero() {
                 <div className="absolute -top-1/2 left-0 right-0 h-1/2 bg-white/10 blur-sm transform rotate-12 translate-y-1 z-0"></div>
                 
                 <span className="relative z-20 text-blue-400 font-medium text-sm tracking-wider">FULL-STACK DEVELOPER</span>
-              </motion.div>
+              </div>
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6">
@@ -111,7 +73,7 @@ function Hero() {
                 <span>View My Work</span>
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
-                  className="h-5 w-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" 
+                  className="h-5 w-5 ml-2" 
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"
@@ -122,12 +84,12 @@ function Hero() {
               
               <button
                 onClick={openCalendlyModal}
-                className="text-blue-400 border border-blue-500/30 bg-blue-500/5 hover:bg-blue-500/10 transition-colors duration-300 px-8 py-3 rounded-md inline-flex items-center group"
+                className="text-blue-400 border border-blue-500/30 bg-blue-500/5 hover:bg-blue-500/10 transition-colors duration-300 px-8 py-3 rounded-md inline-flex items-center"
               >
                 <span>Schedule a Call</span>
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
-                  className="h-5 w-5 ml-2 transition-transform duration-300 group-hover:-translate-y-1" 
+                  className="h-5 w-5 ml-2" 
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"
@@ -136,15 +98,10 @@ function Hero() {
                 </svg>
               </button>
             </div>
-          </motion.div>
+          </div>
           
           {/* Right content - IDE */}
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-full lg:w-1/2"
-          >
+          <div className="w-full lg:w-1/2">
             {/* Completely redesigned IDE Window */}
             <div className="rounded-xl overflow-hidden shadow-2xl border border-gray-700/50 backdrop-blur-sm">
               {/* Browser-like header */}
@@ -188,24 +145,11 @@ function Hero() {
                         className="h-6 whitespace-pre text-white"
                         style={{ fontFamily: "monospace" }}
                       >
-                        {lineIndex < currentLineIndex && (
-                          <div 
-                            dangerouslySetInnerHTML={{ 
-                              __html: getSyntaxHighlightedLine(line.text) 
-                            }}
-                          />
-                        )}
-                        
-                        {lineIndex === currentLineIndex && (
-                          <div className="flex items-center">
-                            <span 
-                              dangerouslySetInnerHTML={{ 
-                                __html: getSyntaxHighlightedLine(line.text.substring(0, currentCharIndex)) 
-                              }}
-                            />
-                            <span className="inline-block w-[2px] h-5 bg-blue-400 animate-pulse"></span>
-                          </div>
-                        )}
+                        <div 
+                          dangerouslySetInnerHTML={{ 
+                            __html: getSyntaxHighlightedLine(line.text) 
+                          }}
+                        />
                       </div>
                     ))}
                   </div>
@@ -224,7 +168,7 @@ function Hero() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
       
