@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import CalendlyModal from '../contact/CalendlyModal';
 
 function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  // Static code without typing animation
+  // Typing animation states
+  const [typedLines, setTypedLines] = useState([]);
+  const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const typingSpeed = 10; // ms per character
+  const lineDelay = 100; // ms delay between lines
+  
+  // Full code content
   const codeLines = [
     { text: "const developWebsite = (idea) => {" },
     { text: "  return {" },
@@ -18,6 +26,32 @@ function Hero() {
     { text: "  };" },
     { text: "};" }
   ];
+
+  // Typing effect
+  useEffect(() => {
+    if (currentLineIndex >= codeLines.length) {
+      setIsTypingComplete(true);
+      return;
+    }
+
+    if (currentText.length < codeLines[currentLineIndex].text.length) {
+      // Still typing current line
+      const timeout = setTimeout(() => {
+        setCurrentText(codeLines[currentLineIndex].text.substring(0, currentText.length + 1));
+      }, typingSpeed);
+      
+      return () => clearTimeout(timeout);
+    } else {
+      // Line complete - move to next line
+      const timeout = setTimeout(() => {
+        setTypedLines([...typedLines, { text: currentText }]);
+        setCurrentLineIndex(currentLineIndex + 1);
+        setCurrentText('');
+      }, lineDelay);
+      
+      return () => clearTimeout(timeout);
+    }
+  }, [currentLineIndex, currentText, typedLines]);
 
   // Function to apply syntax highlighting
   const getSyntaxHighlightedLine = (text) => {
@@ -135,13 +169,14 @@ function Hero() {
                   
                   {/* Code content */}
                   <div className="py-5 px-4 relative">
-                    {/* Vertical indentation guides - FIXED POSITIONING */}
+                    {/* Vertical indentation guides */}
                     <div className="absolute h-[190px] w-px bg-gray-700/20 top-[42px] left-[2.1ch]"></div>
                     <div className="absolute h-[130px] w-px bg-gray-700/20 top-[74px] left-[4.1ch]"></div>
                     
-                    {codeLines.map((line, lineIndex) => (
+                    {/* Completed lines */}
+                    {typedLines.map((line, lineIndex) => (
                       <div 
-                        key={`code-${lineIndex}`} 
+                        key={`typed-${lineIndex}`} 
                         className="h-6 whitespace-pre text-white"
                         style={{ fontFamily: "monospace" }}
                       >
@@ -151,6 +186,26 @@ function Hero() {
                           }}
                         />
                       </div>
+                    ))}
+                    
+                    {/* Current typing line */}
+                    {!isTypingComplete && (
+                      <div 
+                        className="h-6 whitespace-pre text-white"
+                        style={{ fontFamily: "monospace" }}
+                      >
+                        <div 
+                          dangerouslySetInnerHTML={{ 
+                            __html: getSyntaxHighlightedLine(currentText) 
+                          }}
+                        />
+                        <span className="inline-block w-2 h-4 bg-blue-400 ml-0.5 animate-pulse"></span>
+                      </div>
+                    )}
+                    
+                    {/* Remaining empty lines (for consistent height) */}
+                    {Array.from({ length: Math.max(0, codeLines.length - typedLines.length - (isTypingComplete ? 0 : 1)) }).map((_, i) => (
+                      <div key={`empty-${i}`} className="h-6">&nbsp;</div>
                     ))}
                   </div>
                 </div>
